@@ -1,0 +1,29 @@
+.login{
+  height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .login-submit{
+    width: 500px;
+    height: 400px;
+    background-color: #80929E;
+    border-radius: 10px;
+    .login-header{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .login-logo{
+       margin: 20px 0;
+        background-color: #80929E;
+      }
+      .login-title{
+        color: #fff;
+        margin-bottom: 20px;
+      }
+    }
+
+  }
+}
