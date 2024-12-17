@@ -4,17 +4,28 @@ import logo from '../../assets/logo.webp'
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Form, Input } from 'antd';
 import {loginAPI} from "../API/user.ts";
+import {useDispatch} from "react-redux";
+import {setToken} from "../../store/login/authSlice.ts";
+import {useNavigate} from "react-router-dom";
+import {useState} from "react";
 
 const Login=()=>{
     // 获取表单实例
     const [form]=Form.useForm()
-
+    const [loading,setLoading]=useState<boolean>(false)
+    const dispatch=useDispatch()
+    const navigate=useNavigate()
     // 登录按钮
     const onFinish= ()=>{
         form.validateFields().then(async(res)=>{
+            setLoading(true)
             const data=await loginAPI(res)
-            console.log(data)
+            setLoading(false)
+            dispatch(setToken(data.data.token))
+            // 跳转首页
+            navigate('/',{replace:true})
         }).catch((err)=>{
+            setLoading(false)
             console.log(err)
         })
     }
@@ -48,7 +59,7 @@ const Login=()=>{
                         <Input.Password prefix={<LockOutlined />} type="password" placeholder="密码" />
                     </Form.Item>
                     <Form.Item>
-                        <Button block type="primary" htmlType="submit">
+                        <Button block type="primary" htmlType="submit" loading={loading}>
                             登录
                         </Button>
                     </Form.Item>

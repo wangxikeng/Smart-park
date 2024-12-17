@@ -1,5 +1,6 @@
 import {createBrowserRouter} from "react-router-dom";
 import React from "react";
+import RequireAuth from "../utills/requireAuth.tsx";
 // 路由懒加载
 const Home: React.LazyExoticComponent<React.ComponentType<any>> = React.lazy(() => import("../page/home"));
 const Login:React.LazyExoticComponent<React.ComponentType<any>> =React.lazy(()=>import("../page/login"));
@@ -7,11 +8,11 @@ const NotFound:React.LazyExoticComponent<React.ComponentType<any>>  =React.lazy(
 const router=createBrowserRouter([
     {
         path:"/",
-        element:<Home/>
+        element:<RequireAuth allowed={true} redirect={'/login'}><Home/></RequireAuth>
     },
     {
         path:'/login',
-        element:<Login></Login>
+        element:<RequireAuth allowed={false} redirect={'/'}><Login/></RequireAuth>
     },
     {
         path:'*',

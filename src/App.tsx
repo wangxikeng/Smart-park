@@ -1,14 +1,13 @@
-
-import {RouterProvider} from "react-router-dom";
 import router from "./router";
-import './mockjs'
+import {RouterProvider} from "react-router-dom";
+
+
 function App() {
   return (
-    <>
+    <div className='APP'>
         <RouterProvider router={router}>
         </RouterProvider>
-
-    </>
+    </div>
   )
 }
 
