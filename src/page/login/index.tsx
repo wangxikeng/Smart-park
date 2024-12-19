@@ -3,9 +3,9 @@ import bg from '../../assets/bg.webp'
 import logo from '../../assets/logo.webp'
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Form, Input } from 'antd';
-import {loginAPI} from "../API/user.ts";
+import {loginAPI} from "../../API/user.ts";
 import {useDispatch} from "react-redux";
-import {setToken} from "../../store/login/authSlice.ts";
+import { setToken} from "../../store/login/authSlice.ts";
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
 
@@ -22,6 +22,8 @@ const Login=()=>{
             const data=await loginAPI(res)
             setLoading(false)
             dispatch(setToken(data.data.token))
+            // 存储用户名
+            sessionStorage.setItem('username',data.data.username)
             // 跳转首页
             navigate('/',{replace:true})
         }).catch((err)=>{

@@ -1,21 +1,25 @@
 import  {useState} from "react";
 import MyMenu from '../../component/Menu'
-import { Layout,} from 'antd';
+import {Layout, theme,} from 'antd';
 import MyHeader from "../../component/Header";
 import MyBreadCrumb from "../../component/Breadcrumb";
 const { Header, Content, Footer, Sider } = Layout;
+import {Outlet} from "react-router-dom";
 
 const Home=()=>{
+    const {
+        token: { colorBgContainer },
+    } = theme.useToken();
 
     const [collapsed, setCollapsed] = useState(false);
 
     return <>
         <Layout style={{ minHeight: '100vh' }}>
             <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
-              <MyMenu/>
+              <MyMenu collapsed={collapsed}/>
             </Sider>
             <Layout>
-                <Header style={{ padding: 0,}} >
+                <Header style={{ paddingRight:' 20px',background: colorBgContainer,textAlign:"right" }} >
                     <MyHeader></MyHeader>
                 </Header>
                 <Content style={{ margin: '0 16px' }}>
@@ -26,7 +30,7 @@ const Home=()=>{
                             minHeight: 360,
                         }}
                     >
-                        Bill is a cat.
+                      <Outlet/>
                     </div>
                 </Content>
                 <Footer style={{ textAlign: 'center' }}>
