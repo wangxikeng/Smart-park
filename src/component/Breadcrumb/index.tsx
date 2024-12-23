@@ -20,6 +20,7 @@ const MyBreadCrumb=()=>{
       }
     },[location.pathname,menuList])
 
+    // 递归获取面包屑
     const getTitle=(pathname:string,menuList:MenuItemFromAPI[]):BreadcrumbType[]=>{
         for(let item of menuList){
             // 使用startsWith()方法判断路径是否以当前菜单的key开头

@@ -26,7 +26,7 @@ const Home=()=>{
                     <MyBreadCrumb></MyBreadCrumb>
                     <div
                         style={{
-                            padding: 24,
+                            paddingTop: 10,
                             minHeight: 360,
                         }}
                     >

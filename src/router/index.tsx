@@ -26,7 +26,7 @@ const routerTem:any=[
     },
     {
         path:'/login',
-        element:<RequireAuth allowed={false} redirect={'/'}><Login/></RequireAuth>
+        element:<RequireAuth allowed={false} redirect={'/dashboard'}><Login/></RequireAuth>
     },
     {
         path:'*',

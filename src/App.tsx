@@ -25,7 +25,7 @@ function App() {
             // 存储菜单信息
             dispatch(setMenuList(data))
             // routerTem 为静态路由
-            routerTem[0].children=generateRouters(data) // generateRouters 从Redux 中取出的菜单转化的动态路由
+            routerTem[0].children=generateRouters(data) // 转化为动态路由
             // 默认选中第一个
             routerTem[0].children[0].index=true
         }

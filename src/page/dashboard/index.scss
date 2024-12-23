@@ -1,0 +1,23 @@
+.dashboard{
+  .dashboardCard{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .info{
+      .title{
+      font-size:20px;
+        color: #000;
+        // 加粗
+        font-weight: bold;
+      }
+      .described{
+        font-size:10px;
+        color: #80929E;
+      }
+    }
+    .icon{
+      font-size: 60px;
+      color: #7da1f7;
+    }
+  }
+}
