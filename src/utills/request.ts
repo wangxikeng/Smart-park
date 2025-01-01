@@ -5,7 +5,7 @@ import http from "./http.ts";
 interface PromiseResponse{
     code: number,
     data: any,
-    msg: string
+    message: string
 }
 //封装get请求
 export const get = (url: string, params?: any):Promise<PromiseResponse> => {

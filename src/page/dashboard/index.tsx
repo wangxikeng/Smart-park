@@ -1,4 +1,4 @@
-import {Card, Col, Row} from "antd";
+import {Card, Col, Flex, Progress, Row, Statistic, Tag, Timeline} from "antd";
 import { RadarChartOutlined,DollarOutlined, LaptopOutlined,SnippetsOutlined } from '@ant-design/icons';
 import './index.scss'
 import ReactECharts from 'echarts-for-react'
@@ -77,6 +77,61 @@ const Dashboard=()=>{
                 data: [120, 200, 150, 80, 70, 110],
                 type: 'bar'
             }
+        ]
+    };
+    const option3 = {
+        tooltip: {
+            trigger: 'item',
+            formatter: '{a} <br/>{b} : {c} ({d}%)'
+        },
+        legend:{
+            left: 'center', // 水平方向居中
+            top: 'bottom',  // 垂直方向靠下
+            data:[ '在营' ,
+         '已租' ,
+         '出租' ,
+         '续签' ,
+         '新签' ,
+         '待租' ,
+         '退租' ,
+    ]
+
+        },
+        toolbox: {
+            show: true,
+            feature: {
+                saveAsImage: { show: true }
+            }
+        },
+        series: [
+            {
+                name: '租赁情况',
+                type: 'pie',
+                radius: [20, 140],
+                center: ['50%', '50%'],
+                roseType: 'radius',
+                itemStyle: {
+                    borderRadius: 5
+                },
+                label: {
+                    show: false
+                },
+                emphasis: {
+                    label: {
+                        show: true
+                    }
+                },
+                data: [
+                    { value: 40, name: '在营' },
+                    { value: 33, name: '已租' },
+                    { value: 28, name: '出租' },
+                    { value: 22, name: '续签' },
+                    { value: 20, name: '新签' },
+                    { value: 15, name: '待租' },
+                    { value: 12, name: '退租' },
+
+                ]
+            },
         ]
     };
     useEffect(()=>{
@@ -168,6 +223,45 @@ const Dashboard=()=>{
                <Col span={12}>
                    <Card title='企业资质情况状况'>
                        <ReactECharts option={option2} />
+                   </Card>
+               </Col>
+           </Row>
+           <Row  className='mt' gutter={16}>
+               <Col span={12}>
+                   <Card title='租赁情况'>
+                       <ReactECharts option={option3} />
+                   </Card>
+               </Col>
+               <Col span={6}>
+
+                   <Card title='充电桩空闲统计' >
+                       <Flex gap="small"  vertical  align="center" >
+                             <Progress type="circle" percent={75} />
+                             <div> 总充电桩数</div>
+                             <Statistic value={75} suffix="/ 100" />
+                       </Flex>
+                   </Card>
+
+               </Col>
+               <Col span={6}>
+                   <Card title='实时车辆信息'>
+                       <Timeline
+                           items={[
+                               {
+                                   children: <> <Tag color="green">进场</Tag> 8:24 京780ss</>,
+                               },
+                               {
+                                   children: <> <Tag color="red">出场</Tag> 10:24 京4567s</>,
+                               },
+                               {
+                                   children: <> <Tag color="green">进场</Tag> 11:23 京0982</>,
+                               },
+                               {
+                                   children: <> <Tag color="green">出场</Tag> 14:23 京7892</>,
+                               },
+                           ]}
+                       />
+
                    </Card>
                </Col>
            </Row>

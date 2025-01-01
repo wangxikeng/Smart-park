@@ -393,4 +393,60 @@ Mock.mock('https://www.testdemo/Energy',"get",()=>{
         ]
     }
 })
+// 用户数据
+Mock.mock('https://www.testdemo/userListData','post',(config:any)=>{
+    const {pageSize}=JSON.parse(config.body)
+    return {
+        code:200,
+        message:'请求成功',
+        data:Mock.mock({
+            [`list|${pageSize}`]:[
+                {
+                    "id":"@string('number',6)",//随机生成一个六位数字id
+                    "name":"@cname",//随机生成一个人名
+                    "status|1":["1","2","3"],
+                    "phone": /\d{3}\d{4}\d{4}/,
+                    "business|1": ['制造业','互联网','新媒体','美业','新能源','物流','电商'],
+                    "email":"@email",
+                    "creditCode":"@string('number',18)",
+                    "industryNum":"@string('number',15)",
+                    "organizationCode":"@string('upper',9)",
+                    "legalPerson":"@cname",
+                },
+            ],
+            total:70
+        })
+    }
+})
 
+// 删除接口
+Mock.mock('https://www.testdemo/deleteUser','post',(config:any)=>{
+    const id =JSON.parse(config.body)
+    console.log(id)
+    return {
+        code:200,
+        message:'删除成功',
+        data:{}
+    }
+})
+// 批量删除接口
+Mock.mock('https://www.testdemo/deleteUsers','post',(config:any)=>{
+    const res=JSON.parse(config.body)
+    console.log(res)
+    return {
+        code:200,
+        message:'删除成功',
+        data:{}
+    }
+})
+
+// 新增/编辑接口
+Mock.mock('https://www.testdemo/addOrEditUser','post',(config:any)=>{
+    const res=JSON.parse(config.body)
+    console.log(res)
+    return {
+        code:200,
+        message:'编辑成功',
+        data:{}
+    }
+})
