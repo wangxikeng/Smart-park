@@ -1,6 +1,5 @@
 import {Col, Form, Input, message, Modal, Radio, Row} from "antd";
 import {useEffect} from "react";
-import userListSlice from "../../store/user/userListSlice.ts";
 import {useSelector} from "react-redux";
 import {addOrEditUserAPI} from "../../API/userList.ts";
 
@@ -26,7 +25,7 @@ const Dialog=(props:DialogProps)=>{
 // 点击 提交
 const onSubmit=()=>{
     form.validateFields().then(async (res)=>{
-       const data=await addOrEditUserAPI(res)
+       await addOrEditUserAPI(res)
        if(title==='新增企业'){
            message.success('新建成功')
        }

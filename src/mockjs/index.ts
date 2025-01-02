@@ -450,3 +450,47 @@ Mock.mock('https://www.testdemo/addOrEditUser','post',(config:any)=>{
         data:{}
     }
 })
+
+// 楼宇管理列表
+Mock.mock('https://www.testdemo/tenementList','post',(config:any)=>{
+    const res=JSON.parse(config.body)
+    console.log(res)
+    return {
+        code:200,
+        message:'请求成功',
+        data:Mock.mock({
+            [`list|${res.pageSize}`]:[
+                {   "id":"@string('number',6)",//随机生成一个六位数字id
+                    "name":"@title(3, 5)楼",//随机生成一个人名
+                    "status|1":["1","2","3"],
+                    "person":"@cname",
+                    "tel": /\d{3}\d{4}\d{4}/,
+                    "vacancyRate": "@integer(0, 100)",
+                    "propertyFee":"@float(1, 10, 1, 2)"
+                },
+            ],
+            total:70
+        })
+    }
+})
+
+// 修改楼宇数据
+Mock.mock('https://www.testdemo/editTenement','post',(config:any)=>{
+    const res=JSON.parse(config.body)
+    console.log(res)
+    return {
+        code:200,
+        message:'修改成功',
+        data:{}
+    }
+})
+// 删除楼宇信息
+Mock.mock('https://www.testdemo/deleteTenement','post',(config:any)=>{
+    const res=JSON.parse(config.body)
+    console.log(res)
+    return {
+        code:200,
+        message:'删除成功',
+        data:{}
+    }
+})

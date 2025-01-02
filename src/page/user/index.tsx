@@ -102,7 +102,7 @@ const User=()=>{
             align: 'center',  // 居中对齐
             width: '20%',  // 设置每列宽度
             key: 'operate',
-            render(value,record,index){
+            render(value,record){
                 return<>
                     <Button type='primary' onClick={()=>editUserDialog(record)}>编辑</Button>
                     <Popconfirm
